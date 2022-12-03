@@ -1,6 +1,6 @@
 const getImport = require('../getInput');
 
-const getMatchingEl = (firstHalf, secondHalf) => {
+const compare = (firstHalf, secondHalf) => {
   let i = 0;
 
   while(i <= firstHalf.length) {
@@ -18,14 +18,15 @@ const getMatchingEl = (firstHalf, secondHalf) => {
 
 const partone = () => {
   let count = 0;
-  const res = getImport().split(/\n/);
-
-  res.map(stream => {
-    const firstHalf = stream.substring(0, stream.length/2);
-    const secondHalf = stream.substring(stream.length/2, stream.length);
-    
-    count = count + getMatchingEl(firstHalf, secondHalf);
-  });
+  
+  getImport()
+    .split(/\n/)
+    .map(stream => {
+      const firstHalf = stream.substring(0, stream.length/2);
+      const secondHalf = stream.substring(stream.length/2, stream.length);
+      
+      count = count + compare(firstHalf, secondHalf);
+    });
 
   return count;
 }
